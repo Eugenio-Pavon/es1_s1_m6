@@ -1,0 +1,14 @@
+GET http://localhost:3030/getUsers
+####
+POST http://localhost:3030/createUsers
+Content-Type: application/json
+    
+    {
+    "firstName":"eugenio2",
+    "lastName":"pavon2",
+    "email":"abc2@.it",
+    "dateOfBirth":"12342",
+    "avatar":"1232"
+}
+####
+GET http://localhost:3030/getUsers/65f31e5b9c6a2ce190292226
