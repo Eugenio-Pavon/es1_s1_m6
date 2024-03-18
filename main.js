@@ -1,14 +1,19 @@
 const { log } = require("console");
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 require("dotenv").config();
 const PORT = 3030;
 const app = express();
 
-const usersRoute = require("./routes/users");
+const AuthorRoute = require("./routes/author");
+const blogPostRoute = require("./routes/blogPost");
+
+app.use(cors());
 app.use(express.json());
-app.use("/", usersRoute);
+app.use("/", AuthorRoute);
+app.use("/blogPosts", blogPostRoute);
 
 mongoose.connect(
   "mongodb+srv://eugeniopavon:CQkPB2EsYATVvV4f@epicodedbb.xv0gvnq.mongodb.net/",

@@ -1,14 +1,63 @@
-GET http://localhost:3030/getUsers
+GET http://localhost:3030/getAuthor
 ####
-POST http://localhost:3030/createUsers
+POST http://localhost:3030/createAuthor
 Content-Type: application/json
     
     {
-    "firstName":"eugenio2",
-    "lastName":"pavon2",
+    "firstName":"eugenio5",
+    "lastName":"pavon5",
     "email":"abc2@.it",
     "dateOfBirth":"12342",
     "avatar":"1232"
 }
 ####
-GET http://localhost:3030/getUsers/65f31e5b9c6a2ce190292226
+GET http://localhost:3030/getAuthor/65f5d8465c4fda7b5ade9ffc
+####
+PATCH  http://localhost:3030/updateAuthor/65f5d8465c4fda7b5ade9ffc
+Content-Type: application/json
+    
+    {
+    
+    "email":"abc2@gmail.it"
+    
+}
+####
+DELETE http://localhost:3030/deleteAuthor/65f5d84d5c4fda7b5ade9ffe
+####
+
+//blogPost
+
+GET http://localhost:3030/blogPosts
+####
+POST http://localhost:3030/blogPosts
+Content-Type: application/json
+    
+    {
+    "category":"xyz5",
+    "title":"xyz5",
+    "cover":"xyz5",
+    "readTime":{
+       "value": 123,
+       "unit":"xyz"
+
+    },
+    "author":{
+       "name": "xyz",
+       "avatar":"xyz"
+
+    },
+    "content":"xyz"
+}
+####
+GET http://localhost:3030/blogPosts/65f5ccd8492348e9da6b5b26
+####
+PATCH  http://localhost:3030/blogPosts/65f5d1a3163aa0b50f9b95cc
+Content-Type: application/json
+    
+    {
+    
+    "category":"uvw"
+    
+}
+####
+DELETE http://localhost:3030/blogPosts/65f5d4a32059d6b467ead7f9
