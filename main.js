@@ -2,6 +2,7 @@ const { log } = require("console");
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const path = require("path");
 
 require("dotenv").config();
 const PORT = 3030;
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use("/", AuthorRoute);
 app.use("/blogPosts", blogPostRoute);
 app.use("/exercise", exerciseRoute);
+app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
 
 mongoose.connect(
   "mongodb+srv://eugeniopavon:CQkPB2EsYATVvV4f@epicodedbb.xv0gvnq.mongodb.net/",

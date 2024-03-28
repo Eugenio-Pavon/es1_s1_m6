@@ -33,9 +33,9 @@ POST http://localhost:3030/blogPosts
 Content-Type: application/json
     
     {
-    "category":"xyz5",
-    "title":"xyz5",
-    "cover":"xyz5",
+    "category":"xyz7",
+    "title":"xyz15",
+    "cover":"xyz7",
     "readTime":{
        "value": 123,
        "unit":"xyz"
@@ -46,10 +46,83 @@ Content-Type: application/json
        "avatar":"xyz"
 
     },
-    "content":"xyz"
+    "content":"xyz",
+    "comments":[]
 }
 ####
-GET http://localhost:3030/blogPosts/65f5ccd8492348e9da6b5b26
+POST    http://localhost:3030/blogPosts
+Content-Type: application/json
+    
+    {
+    "category":"xyz",
+    "title":"xyz2",
+    "cover":"xyz",
+    "readTime":{
+       "value": 123,
+       "unit":"xyz"
+
+    },
+    "author":{
+       "name": "xyz",
+       "avatar":"xyz"
+
+    },
+    "content":"xyz",
+    "comments":[
+        {
+        "title":"xyz2",
+        "body":"xyz"
+        
+        
+    },
+    {
+        "title":"xyz2",
+        "body":"xyz"
+        
+        
+    }
+    ]
+        
+    
+}
+
+####
+POST    http://localhost:3030/blogPosts/660426b23d504c2de41e7748/comments
+Content-Type: application/json
+    
+    {
+    "text":"nice2"
+    
+}
+
+####
+GET    http://localhost:3030/blogPosts/660426b23d504c2de41e7748/comments
+Content-Type: application/json
+    
+
+####
+# PATCH  http://localhost:3030/blogPosts/
+# Content-Type: application/json
+
+#     {
+#     "comments":[
+#         {
+#         "title":"xyz2",
+#         "body":"xyz"
+        
+        
+#     },
+#     {
+#         "title":"xyz2",
+#         "body":"xyz"
+        
+        
+#     }
+#     ]
+# }
+
+####
+GET http://localhost:3030/blogPosts/660426b23d504c2de41e7748
 ####
 PATCH  http://localhost:3030/blogPosts/65f5d1a3163aa0b50f9b95cc
 Content-Type: application/json
@@ -78,3 +151,48 @@ GET http://localhost:3030/exercise/green
 GET http://localhost:3030/exercise/noGreen_noBlue
 ####
 GET http://localhost:3030/exercise/company
+####
+# POST http://localhost:3030/getAuthor/cloudUploadImg
+# Content-Type: application/json
+    
+#     {
+#     "img":"https://www.zooplus.it/magazine/wp-content/uploads/2020/10/1-37-768x512.jpg"
+# }
+
+####
+PATCH  http://localhost:3030/updateAuthor/65f5d8465c4fda7b5ade9ffc
+Content-Type: application/json
+    
+    {
+    
+    "avatar":"http://localhost:3030/uploads/uploadImg-1711460864932-768698325.png"
+    
+}
+####
+PATCH  http://localhost:3030/blogPosts/65f5d1a3163aa0b50f9b95cc
+Content-Type: application/json
+    
+    {
+    
+    "cover":"http://localhost:3030/uploads/uploadImg-1711460864932-768698325.png"
+    
+}
+####
+GET http://localhost:3030/blogPosts/660426b23d504c2de41e7748/comments/660427533d504c2de41e775a
+
+####
+POST  http://localhost:3030/blogPosts/660426b23d504c2de41e7748/comments
+Content-Type: application/json
+
+{
+    "text":"ciao"
+}
+####
+PATCH   http://localhost:3030/blogPosts/660426b23d504c2de41e7748/comments/660427533d504c2de41e775a
+Content-Type: application/json
+
+{
+    "text":"ciao2"
+}
+####
+DELETE  http://localhost:3030/blogPosts/660426b23d504c2de41e7748/comments/660426b23d504c2de41e774a

@@ -1,6 +1,72 @@
 const express = require("express");
 const router = express.Router();
 const AuthorModel = require("../models/author");
+const multer = require("multer");
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+require("dotenv").config();
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+const internalStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads");
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    const fileExtension = file.originalname.split(".").pop();
+    cb(null, `${file.fieldname}-${uniqueSuffix}.${fileExtension}`);
+  },
+});
+
+const cloudStorage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "PT043",
+    //format: async (req, file) => "png",
+    public_id: (req, file) => file.name,
+  },
+});
+
+const upload = multer({ storage: internalStorage });
+
+const cloudUpload = multer({ storage: cloudStorage });
+
+router.post(
+  "/getAuthor/UploadImg",
+  upload.single("uploadImg"),
+  async (req, res) => {
+    const url = req.protocol + "://" + req.get("host");
+    try {
+      const imageUrl = req.file.filename;
+      res.status(200).json({ img: `${url}/uploads/${imageUrl}` });
+    } catch (error) {
+      res.status(500).send({
+        statusCode: 500,
+        message: "file upload error",
+      });
+    }
+  }
+);
+
+router.post(
+  "/getAuthor/cloudUploadImg",
+  cloudUpload.single("uploadImg"),
+  async (req, res) => {
+    try {
+      res.status(200).json({ source: req.file.path });
+    } catch (error) {
+      res.status(500).send({
+        statusCode: 500,
+        message: "file upload error",
+      });
+    }
+  }
+);
 
 router.get("/getAuthor", async (req, resp) => {
   try {
