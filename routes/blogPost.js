@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const blogPostModel = require("../models/blogPost");
+const verified = require("../middlewares/verifyToken");
 
-router.get("/", async (req, resp) => {
+router.get("/blogPosts", verified, async (req, resp) => {
   try {
     const blogPost = await blogPostModel.find();
     resp.status(200).send(blogPost);

@@ -4,6 +4,12 @@ const AuthorModel = require("../models/author");
 const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const author = require("../models/author");
+const validateAuthorBody = require("../middlewares/validateAuthorBody");
+const verified = require("../middlewares/verifyToken");
+const bcrypt = require("bcrypt");
+const { verify } = require("jsonwebtoken");
+
 require("dotenv").config();
 
 cloudinary.config({
@@ -68,10 +74,18 @@ router.post(
   }
 );
 
-router.get("/getAuthor", async (req, resp) => {
+router.get("/getAuthor", verified, async (req, resp) => {
+  const { page = 1, pageSize = 5 } = req.query;
   try {
-    const Author = await AuthorModel.find();
-    resp.status(200).send(Author);
+    const Author = await AuthorModel.find()
+      .limit(pageSize)
+      .skip((page - 1) * pageSize);
+    const totalAutors = await AuthorModel.countDocuments();
+    resp.status(200).send({
+      Author,
+      currentPage: +page,
+      totalPages: Math.ceil(totalAutors / pageSize),
+    });
   } catch (e) {
     resp.status(500).send({
       statusCode: 500,
@@ -99,11 +113,14 @@ router.get("/getAuthor/:id", async (req, resp) => {
   }
 });
 
-router.post("/createAuthor", async (req, resp) => {
+router.post("/createAuthor", validateAuthorBody, async (req, resp) => {
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(req.body.password, salt);
   const newAuthor = new AuthorModel({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
+    password: hashedPassword,
     dateOfBirth: req.body.dateOfBirth,
     avatar: req.body.avatar,
   });

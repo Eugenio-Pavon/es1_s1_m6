@@ -1,12 +1,14 @@
-GET http://localhost:3030/getAuthor
+GET http://localhost:3030/getAuthor?page=1
+Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJldWdlbmlvMTAiLCJsYXN0TmFtZSI6InBhdm9uMTAiLCJlbWFpbCI6ImNhbmUuZ2F0dG9AZ21haWwuaXQiLCJpYXQiOjE3MTIyNDQ1MTQsImV4cCI6MTcxMjMzMDkxNH0.7PkiPsq3xml2Vt2DrmSlfnMCyZCFFm_tPA6TUsu6zZg"
 ####
 POST http://localhost:3030/createAuthor
 Content-Type: application/json
     
     {
-    "firstName":"eugenio5",
-    "lastName":"pavon5",
-    "email":"abc2@.it",
+    "firstName":"eugenio11",
+    "lastName":"pavon11",
+    "email":"cane.gatto2@gmail.it",
+    "password":"abcdef12",
     "dateOfBirth":"12342",
     "avatar":"1232"
 }
@@ -28,6 +30,9 @@ DELETE http://localhost:3030/deleteAuthor/65f5d84d5c4fda7b5ade9ffe
 //blogPost
 
 GET http://localhost:3030/blogPosts
+
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJldWdlbmlvMTEiLCJsYXN0TmFtZSI6InBhdm9uMTEiLCJlbWFpbCI6ImNhbmUuZ2F0dG8yQGdtYWlsLml0IiwiaWF0IjoxNzEyMjUyNTA3LCJleHAiOjE3MTIzMzg5MDd9.v_xF6XtrlpBrheqpoWaq1BwKO4r3y0EqIkr9yDI5JA4
+
 ####
 POST http://localhost:3030/blogPosts
 Content-Type: application/json
@@ -196,3 +201,13 @@ Content-Type: application/json
 }
 ####
 DELETE  http://localhost:3030/blogPosts/660426b23d504c2de41e7748/comments/660426b23d504c2de41e774a
+####
+POST http://localhost:3030/login
+Content-Type: application/json
+
+{
+    "email":"cane.gatto2@gmail.it",
+    "password":"abcdef12"
+
+}
+####
