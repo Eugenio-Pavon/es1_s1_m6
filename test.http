@@ -1,7 +1,7 @@
 GET http://localhost:3030/getAuthor?page=1
 Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJldWdlbmlvMTAiLCJsYXN0TmFtZSI6InBhdm9uMTAiLCJlbWFpbCI6ImNhbmUuZ2F0dG9AZ21haWwuaXQiLCJpYXQiOjE3MTIyNDQ1MTQsImV4cCI6MTcxMjMzMDkxNH0.7PkiPsq3xml2Vt2DrmSlfnMCyZCFFm_tPA6TUsu6zZg"
 ####
-POST http://localhost:3030/createAuthor
+POST http://localhost:3030/createAuthors
 Content-Type: application/json
     
     {
@@ -39,7 +39,7 @@ Content-Type: application/json
     
     {
     "category":"xyz7",
-    "title":"xyz15",
+    "title":"xyz23",
     "cover":"xyz7",
     "readTime":{
        "value": 123,
@@ -54,13 +54,14 @@ Content-Type: application/json
     "content":"xyz",
     "comments":[]
 }
+
 ####
 POST    http://localhost:3030/blogPosts
 Content-Type: application/json
     
     {
     "category":"xyz",
-    "title":"xyz2",
+    "title":"xyz3",
     "cover":"xyz",
     "readTime":{
        "value": 123,
@@ -174,12 +175,12 @@ Content-Type: application/json
     
 }
 ####
-PATCH  http://localhost:3030/blogPosts/65f5d1a3163aa0b50f9b95cc
+PATCH  http://localhost:3030/blogPosts/660426b23d504c2de41e7748
 Content-Type: application/json
     
     {
     
-    "cover":"http://localhost:3030/uploads/uploadImg-1711460864932-768698325.png"
+    "cover":"https://res.cloudinary.com/dhijdwjv7/image/upload/v1711395063/PT043/uwbqhwnh7hf8hpqxuyhj.png"
     
 }
 ####

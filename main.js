@@ -1,4 +1,3 @@
-// const { log } = require("console");
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -19,7 +18,7 @@ app.use(express.json());
 
 app.use(logger);
 app.use("/", AuthorRoute);
-app.use("/", blogPostRoute);
+app.use("/blogPosts", blogPostRoute);
 app.use("/exercise", exerciseRoute);
 app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
 app.use("/", loginRoute);

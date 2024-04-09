@@ -36,19 +36,36 @@ function MainContent() {
   return (
     <div className="container">
       <div className="row">
-        <div>
-          {blogPosts &&
-            blogPosts.map((post) => (
-              <div key={post._id} className="col-md-4 mb-3">
-                <Card>
-                  <Card.Body>
-                    <Card.Title>{post.title}</Card.Title>
-                    <Card.Text>{post.content}</Card.Text>
-                  </Card.Body>
-                </Card>
-              </div>
-            ))}
-        </div>
+        {blogPosts.map((post) => (
+          <div
+            key={post._id}
+            className="col-lg-3 col-md-4 col-sm-6 col-12 mb-3"
+          >
+            <Card>
+              <Card.Img variant="top" src={post.cover} alt={post.title} />
+              <Card.Body>
+                <Card.Title>{post.title}</Card.Title>
+                <Card.Text>{post.content}</Card.Text>
+                <p>
+                  <strong>Category:</strong> {post.category}
+                </p>
+                <p>
+                  <strong>Author:</strong> {post.author.name}
+                </p>
+
+                <p>
+                  <strong>Read Time:</strong> {post.readTime.value}{" "}
+                  {post.readTime.unit}
+                </p>
+              </Card.Body>
+              <Card.Footer>
+                <small className="text-muted">
+                  Published on {new Date(post.createdAt).toLocaleDateString()}
+                </small>
+              </Card.Footer>
+            </Card>
+          </div>
+        ))}
       </div>
     </div>
   );

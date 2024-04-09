@@ -1,14 +1,15 @@
 import React from "react";
 import MainContent from "../components/homepage/MainContent";
-import { jwtDecode } from "jwt-decode";
+
+import MyNav from "../components/navbar/MyNav";
 
 const Home = () => {
-  const session = JSON.parse(localStorage.getItem("auth"));
-  console.log(session);
-  const decodedSession = jwtDecode(session);
-  console.log(decodedSession);
-
-  return <MainContent />;
+  return (
+    <>
+      <MyNav />
+      <MainContent />
+    </>
+  );
 };
 
 export default Home;

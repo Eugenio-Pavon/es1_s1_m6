@@ -113,7 +113,7 @@ router.get("/getAuthor/:id", async (req, resp) => {
   }
 });
 
-router.post("/createAuthor", validateAuthorBody, async (req, resp) => {
+router.post("/createAuthors", validateAuthorBody, async (req, resp) => {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(req.body.password, salt);
   const newAuthor = new AuthorModel({
